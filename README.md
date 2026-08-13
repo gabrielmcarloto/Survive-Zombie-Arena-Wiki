@@ -18,4 +18,6 @@
 
 [Titles](url) [In Progress]
 
-<img width="150" height="150" alt="noFilter" src="https://github.com/user-attachments/assets/7378972e-09c9-4beb-b51a-7e3e22448105" />
+<p align="center">
+  <img width="250" alt="noFilter" src="https://github.com/user-attachments/assets/7378972e-09c9-4beb-b51a-7e3e22448105" />
+</p>
