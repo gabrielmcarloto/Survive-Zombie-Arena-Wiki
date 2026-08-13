@@ -4,6 +4,12 @@ on:
   gollum: # Dispara quando a Wiki for editada
   workflow_dispatch: # Permite rodar manualmente
 
+# Concede as permissões necessárias para o GitHub Pages funcionar
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
