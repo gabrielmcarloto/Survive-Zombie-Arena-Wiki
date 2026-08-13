@@ -1,7 +1,7 @@
 name: Deploy Wiki to Pages
 
 on:
-  gollum: # Dispara quando a Wiki for editado
+  gollum: # Dispara quando a Wiki for editada
   workflow_dispatch: # Permite rodar manualmente
 
 jobs:
@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Checkout Wiki
-        run: git clone "https://github.com{{ github.repository }}.wiki.git" wiki-content
+        run: git clone "https://github.com" wiki-content
           
       - name: Prepare Files for Jekyll
         run: |
