@@ -12,7 +12,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Checkout Wiki
-        run: git clone "https://github.com" wiki-content
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}.wiki
+          path: wiki-content
           
       - name: Prepare Files for Jekyll
         run: |
