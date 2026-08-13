@@ -28,14 +28,16 @@ jobs:
           
       - name: Prepare Files for Jekyll
         run: |
+          # Move os arquivos da wiki para a raiz do deploy
           cp -r wiki-content/* .
           rm -rf wiki-content
           
-          # Procura por qualquer variação comum de página inicial e força virar index.md
-          if [ -f "Home.md" ]; then cp Home.md index.md;
-          elif [ -f "home.md" ]; then cp home.md index.md;
-          elif [ -f "HOME.md" ]; then cp HOME.md index.md;
-          elif [ -f "main.md" ]; then cp main.md index.md;
+          # Cria o arquivo de configuração para desativar as restrições do Jekyll
+          echo "theme: jekyll-theme-primer" > _config.yml
+          
+          # Renomeia a página principal para index.md para o Jekyll reconhecer nativamente
+          if [ -f "Home.md" ]; then mv Home.md index.md;
+          elif [ -f "home.md" ]; then mv home.md index.md;
           fi
 
       - name: Setup Pages
