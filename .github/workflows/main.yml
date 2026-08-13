@@ -30,7 +30,13 @@ jobs:
         run: |
           cp -r wiki-content/* .
           rm -rf wiki-content
-          if [ -f "Home.md" ]; then cp Home.md index.md; fi
+          
+          # Procura por qualquer variação comum de página inicial e força virar index.md
+          if [ -f "Home.md" ]; then cp Home.md index.md;
+          elif [ -f "home.md" ]; then cp home.md index.md;
+          elif [ -f "HOME.md" ]; then cp HOME.md index.md;
+          elif [ -f "main.md" ]; then cp main.md index.md;
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
