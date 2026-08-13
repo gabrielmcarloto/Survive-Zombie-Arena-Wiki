@@ -1,0 +1,36 @@
+name: Deploy Wiki to Pages
+
+on:
+  gollum: # Dispara a automação sempre que o Wiki for editado
+  workflow_dispatch: # Permite rodar manualmente
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Checkout Wiki
+        run: |
+          git clone https://github.com{{ github.repository }}.wiki.git wiki-content
+          
+      - name: Prepare Files for Jekyll
+        run: |
+          # Move os arquivos do wiki para a pasta raiz que o Pages vai ler
+          cp -r wiki-content/* .
+          rm -rf wiki-content
+          
+          # Cria uma página inicial padrão caso a Home.md não seja reconhecida como index
+          if [ -f "Home.md" ]; then cp Home.md index.md; fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
